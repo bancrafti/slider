@@ -1,0 +1,49 @@
+body{
+    background-color: papayawhip;
+}
+/* Fullscreen centered container */
+.banner {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* center horizontally */
+    align-items: center;     /* center vertically */
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+/* The rotating carousel */
+.banner .slider {
+    width: 200px;
+    height: 250px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: spin 50s linear infinite;
+}
+
+/* Individual rotating items */
+.banner .slider .item {
+    position: absolute;
+    inset: 0;
+    transform:
+        rotateY(calc((var(--position) - 1) * 360deg / var(--quantity)))
+        translateZ(550px);
+    backface-visibility: hidden;
+}
+
+/* Image styling */
+.banner .slider .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Rotation animation */
+@keyframes spin {
+    from {
+        transform: rotateY(360deg);
+    }
+    to {
+        transform: rotateY(0deg);
+    }
+}
